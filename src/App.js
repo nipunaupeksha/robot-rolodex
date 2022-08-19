@@ -9,7 +9,7 @@ class App extends Component {
     super();
 
     this.state = {
-      monsters: [],
+      robots: [],
       searchField: ''
     };
   }
@@ -17,7 +17,7 @@ class App extends Component {
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users').then(response => response.json())
       .then(users => this.setState(() => {
-        return { monsters: users };
+        return { robots: users };
       }));
   }
 
@@ -29,18 +29,18 @@ class App extends Component {
   }
 
   render() {
-    const { monsters, searchField } = this.state;
+    const { robots, searchField } = this.state;
     const { onSearchChange } = this;
 
-    const filteredMonsters = monsters.filter((monster) => {
-      return monster.name.toLocaleLowerCase().includes(searchField);
+    const filteredRobots = robots.filter((robot) => {
+      return robot.name.toLocaleLowerCase().includes(searchField);
     });
 
     return (
       <div className="App">
-        <h1 className='app-title'>Monsters Rolodex</h1>
-        <SearchBox className='monsters-search-box' onChangeHandler = {onSearchChange} placeholder='search monsters'/>
-        <CardList monsters = {filteredMonsters}/>
+        <h1 className='app-title'>Robots Rolodex</h1>
+        <SearchBox className='robots-search-box' onChangeHandler = {onSearchChange} placeholder='search robots'/>
+        <CardList robots = {filteredRobots}/>
       </div>
     );
   }
